@@ -1,0 +1,996 @@
+{
+  "info": {
+    "_postman_id": "8020577f-54ce-4ed3-931d-0c4c100290d5",
+    "name": "Teste QA Pleno - Assets",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47537736",
+    "_collection_link": "https://go.postman.co/collection/47537736-8020577f-54ce-4ed3-931d-0c4c100290d5?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "POST /assets",
+      "item": [
+        {
+          "name": "Asset válido request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Validar se o status é 200\r",
+                  "pm.test(\"Status code é 201\", function () {\r",
+                  "    pm.response.to.have.status(201);\r",
+                  "});\r",
+                  "\r",
+                  "// Validar se o tempo de resposta é aceitável (Requisito de Performance)\r",
+                  "pm.test(\"Tempo de resposta inferior a 500ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+                  "});\r",
+                  "\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T12:00:00Z\"\r\n  }\r\n\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Asset válido request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"1\",\r\n  \"name\": \"Customer Database\",\r\n  \"type\": \"DATABASE\",\r\n  \"tags\": [\"customer\", \"pii\"],\r\n  \"taxonomy\": [\"DATA\", \"CRM\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-17T12:00:00Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"status\":\"Criado com Sucesso\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Asset inválido (name ausente) resquest",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"10\",\r\n  \"name\": \"\",\r\n  \"type\": \"DATABASE\",\r\n  \"tags\": [\"customer\", \"pii\"],\r\n  \"taxonomy\": [\"DATA\", \"CRM\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-17T12:00:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "POST - Asset inválido (name ausente) resquest",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"10\",\r\n  \"name\": \"\",\r\n  \"type\": \"DATABASE\",\r\n  \"tags\": [\"customer\", \"pii\"],\r\n  \"taxonomy\": [\"DATA\", \"CRM\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-17T12:00:00Z\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"status\": \"Nome Ausente\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Asset inválido(tags malformado) request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"11\",\r\n  \"name\": \"Finance Report\",\r\n  \"type\": \"REPORT\",\r\n  \"tags\": \"finance, pii\", \r\n  \"taxonomy\": [\"FINANCE\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-18T12:05:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Asset inválido(tags malformado) request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"11\",\r\n  \"name\": \"Finance Report\",\r\n  \"type\": \"REPORT\",\r\n  \"tags\": \"finance, pii\", \r\n  \"taxonomy\": [\"FINANCE\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-18T12:05:00Z\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"Status\": \"Campo tags deveria ser array, mas foi enviado como string\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Asset inválido (type inválido) request",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"12\",\r\n  \"name\": \"Customer Dashboard\",\r\n  \"type\": \"INVALID_TYPE\",\r\n  \"tags\": [\"analytics\", \"pii\"],\r\n  \"taxonomy\": [\"BI\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-18T12:10:00Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Asset inválido (type inválido) request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"12\",\r\n  \"name\": \"Customer Dashboard\",\r\n  \"type\": \"INVALID_TYPE\",\r\n  \"tags\": [\"analytics\", \"pii\"],\r\n  \"taxonomy\": [\"BI\"],\r\n  \"status\": \"ACTIVE\",\r\n  \"createdAt\": \"2026-01-18T12:10:00Z\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"Status\":\"valor de type não pertence ao conjunto permitido: DATABASE, REPORT, DASHBOARD, etc.\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET /assets (Listagem)",
+      "item": [
+        {
+          "name": "Listagem sem filtro(ACTIVE) request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Todos os assets retornados estão com status ACTIVE\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    jsonData.forEach(asset => {\r",
+                  "        pm.expect(asset.Status).to.eql(\"ACTIVE\");\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  },\r\n  {\r\n    \"id\": \"3\",\r\n    \"name\": \"Customer Analytics Dashboard\",\r\n    \"type\": \"DASHBOARD\",\r\n    \"tags\": [\"analytics\"],\r\n    \"taxonomy\": [\"BI\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-15T08:30:00Z\"\r\n  }\r\n]\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Listagem sem filtro(ACTIVE) request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"data\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  },\r\n  {\r\n    \"id\": \"3\",\r\n    \"name\": \"Customer Analytics Dashboard\",\r\n    \"type\": \"DASHBOARD\",\r\n    \"tags\": [\"analytics\"],\r\n    \"taxonomy\": [\"bi\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-15T08:30:00Z\"\r\n  }\r\n]\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"status\": \"busca com Sucesso\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Filtro status=INACTIVE request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Todos os assets retornados estão com status INACTIVE\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    jsonData.forEach(asset => {\r",
+                  "        pm.expect(asset.status).to.eql(\"INACTIVE\");\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": \"2\",\r\n    \"name\": \"Legacy Finance Report\",\r\n    \"type\": \"REPORT\",\r\n    \"tags\": [\"finance\"],\r\n    \"taxonomy\": [\"FINANCE\"],\r\n    \"status\": \"INACTIVE\",\r\n    \"createdAt\": \"2025-12-01T14:20:00Z\"\r\n  }\r\n]\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets?status=INACTIVE",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "INACTIVE"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Filtro status=INACTIVE request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n  {\r\n    \"id\": \"2\",\r\n    \"name\": \"Legacy Finance Report\",\r\n    \"type\": \"REPORT\",\r\n    \"tags\": [\"finance\"],\r\n    \"taxonomy\": [\"FINANCE\"],\r\n    \"status\": \"INACTIVE\",\r\n    \"createdAt\": \"2025-12-01T14:20:00Z\"\r\n  }\r\n]\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets?status=INACTIVE",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "INACTIVE"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [],
+              "body": "{\r\n    \"Status\": \"busca com Sucesso\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Filtro tag=pii",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Todos os assets retornados possuem a tag 'pii'\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    jsonData.forEach(asset => {\r",
+                  "        pm.expect(asset.tags).to.include(\"pii\");\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  }\r\n]\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets?tag=pii",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "pii"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Filtro tag=pii",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  }\r\n]\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets?tag=pii",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "pii"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"Status\": \"busca com Sucesso\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Filtro taxonomy=finance",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Todos os assets retornados possuem taxonomy 'finance'\", function () {\r",
+                  "    const jsonData = pm.response.json();\r",
+                  "    jsonData.forEach(asset => {\r",
+                  "        pm.expect(asset.taxonomy).to.include(\"FINANCE\");\r",
+                  "    });\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  }\r\n]\r\n"
+            },
+            "url": {
+              "raw": "{{url}}/assets?taxonomy=finance",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets"
+              ],
+              "query": [
+                {
+                  "key": "taxonomy",
+                  "value": "finance"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Filtro taxonomy=finance",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\r\n  {\r\n    \"id\": \"1\",\r\n    \"name\": \"Customer Database\",\r\n    \"type\": \"DATABASE\",\r\n    \"tags\": [\"customer\", \"pii\"],\r\n    \"taxonomy\": [\"DATA\", \"CRM\"],\r\n    \"status\": \"ACTIVE\",\r\n    \"createdAt\": \"2026-01-17T10:00:00Z\"\r\n  }\r\n]\r\n"
+                },
+                "url": {
+                  "raw": "{{url}}/assets?taxonomy=finance",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "key": "taxonomy",
+                      "value": "finance"
+                    }
+                  ]
+                }
+              },
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"Status\": \"busca com Sucesso\"\r\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GET /assets/:id",
+      "item": [
+        {
+          "name": "Asset válido (id=2)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Asset retornado possui todos os campos obrigatórios\", function () {\r",
+                  "    const asset = pm.response.json();\r",
+                  "    pm.expect(asset).to.have.property(\"id\");\r",
+                  "    pm.expect(asset).to.have.property(\"name\");\r",
+                  "    pm.expect(asset).to.have.property(\"type\");\r",
+                  "    pm.expect(asset).to.have.property(\"tags\");\r",
+                  "    pm.expect(asset).to.have.property(\"taxonomy\");\r",
+                  "    pm.expect(asset).to.have.property(\"status\");\r",
+                  "    pm.expect(asset).to.have.property(\"createdAt\");\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Status do asset é válido (ACTIVE ou INACTIVE)\", function () {\r",
+                  "    const asset = pm.response.json();\r",
+                  "    pm.expect([\"ACTIVE\", \"INACTIVE\"]).to.include(asset.status);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"2\",\r\n  \"name\": \"Legacy Finance Report\",\r\n  \"type\": \"REPORT\",\r\n  \"tags\": [\"finance\"],\r\n  \"taxonomy\": [\"FINANCE\"],\r\n  \"status\": \"INACTIVE\",\r\n  \"createdAt\": \"2025-12-01T14:20:00Z\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets/2",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets",
+                "2"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Asset válido (id=2)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"id\": \"2\",\r\n  \"name\": \"Legacy Finance Report\",\r\n  \"type\": \"REPORT\",\r\n  \"tags\": [\"finance\"],\r\n  \"taxonomy\": [\"FINANCE\"],\r\n  \"status\": \"INACTIVE\",\r\n  \"createdAt\": \"2025-12-01T14:20:00Z\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets/2",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets",
+                    "2"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\r\n    \"Status\":\"ID válido\"\r\n}"
+            }
+          ]
+        },
+        {
+          "name": "Asset inválido (id=9999)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code é 404\", function () {\r",
+                  "    pm.response.to.have.status(404);\r",
+                  "});\r",
+                  "\r",
+                  "pm.test(\"Resposta contém mensagem de erro\", function () {\r",
+                  "    const errorResponse = pm.response.json();\r",
+                  "    pm.expect(errorResponse).to.have.property(\"error\");\r",
+                  "    pm.expect(errorResponse.error).to.eql(\"Asset not found\");\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"error\": \"Asset not found\",\r\n  \"id\": \"9999\",\r\n  \"status\": \"NOT_FOUND\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{url}}/assets/9999",
+              "host": [
+                "{{url}}"
+              ],
+              "path": [
+                "assets",
+                "9999"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Asset inválido (id=9999)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"error\": \"Asset not found\",\r\n  \"id\": \"9999\",\r\n  \"status\": \"NOT_FOUND\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{url}}/assets/9999",
+                  "host": [
+                    "{{url}}"
+                  ],
+                  "path": [
+                    "assets",
+                    "9999"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "description": "",
+                  "type": "text"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"Status\": \"Nenhum asset encontrado para o ID informado.\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
