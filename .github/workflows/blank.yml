@@ -24,7 +24,7 @@ jobs:
           npm install -g newman 
           npm install -g newman-reporter-htmlextra 
       - name: Run Test 
-        run: newman run "Teste QA Pleno - Assets.postman_collection.json" -e "baseUrl.postman_environment.json" -r cli,htmlextra
+        run: newman run "Teste QA Pleno - Assets.postman_collection.json" -r cli,htmlextra
          
       - name: Report  
         uses: actions/upload-artifact@v3.1.2 
