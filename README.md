@@ -1,14 +1,14 @@
 # Teste-QA-Pleno
-Teste de API Rest do manual a CI/CD
+Teste de API Rest do manual a CI/CD.
 ## O que é
-Este repositório foi criado para o bootcamp de Teste de API Rest.
+Este repositório foi criado para o Teste de API usando Mock Server.
 ## Tecnologias utilizadas
 - Postman versão web
 - node version v24.11.1
 - newman v6.2.1
 - newman-reporter-html
 ## Documentações
-- Analise Técnica: Analise/
+- Analise Técnica:
 ## Como instalar o ambiente
 - Primeiro: instale o node em seu computador [baixe aqui](https://nodejs.org/en/download)
 - Segundo: realize a instalação do newman de forma global [baixe aqui a dependencia](https://www.npmjs.com/package/newman)
@@ -22,7 +22,7 @@ npm install -g newman-reporter-html
 ```
 ## Como rodar os testes
 ### Pelo Postman web ou desktop
-- Import a collection e o environment
+- Import a collection
 - Execute os teste de forma manual ou automatizada
 ### Pelo newman
 - Abra o console de preferência
